@@ -20,7 +20,7 @@ var routes = Routes{
 	},
 	Route{
 		"Delete",
-		"POST",
+		"DELETE",
 		"/person/delete",
 		Delete,
 	},
