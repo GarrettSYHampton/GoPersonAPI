@@ -3,8 +3,8 @@ package person
 import (
 	"database/sql"
 	"fmt"
-	"strconv"
 	_ "github.com/go-sql-driver/mysql"
+	"strconv"
 )
 
 // Database variable useable from anywhere within our application
