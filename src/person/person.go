@@ -4,22 +4,10 @@ import (
 	"database/sql"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
-	"os"
 	"strconv"
 )
 
-var (
-	db   *sql.DB
-	Conf Config
-)
-
-type Config struct {
-	User string `json:"user"`
-	Pass string `json:"pass"`
-	Host string `json:"host"`
-	Port int    `json:"port"`
-	DB   string `json:"db"`
-}
+var db *sql.DB
 
 type Person struct {
 	ID           int64  `json:"id"`
@@ -30,37 +18,25 @@ type Person struct {
 	Weight       int    `json:"weight"`
 }
 
-func init() {
-
-	port, err := strconv.Atoi(os.Getenv("MYSQLPORT"))
-	if err != nil {
-		panic(err)
-	}
-
-	Conf = Config{
-		User: os.Getenv("MYSQLUSER"),
-		Pass: os.Getenv("MYSQLPASS"),
-		Host: os.Getenv("MYSQLHOST"),
-		Port: port,
-		DB:   os.Getenv("MYSQLDB"),
-	}
-
+func Connect(user string, pass string, host string, port int, schema string) error {
 	d := fmt.Sprintf("%s:%s@tcp4(%s:%s)/%s",
-		Conf.User,
-		Conf.Pass,
-		Conf.Host,
-		strconv.Itoa(Conf.Port),
-		Conf.DB,
+		user,
+		pass,
+		host,
+		strconv.Itoa(port),
+		schema,
 	)
 	// Attempt to establish a new SQL driver connection (does not actually connect to the SQL server)
+	var err error
 	db, err = sql.Open("mysql", d)
 	if err != nil {
-		panic(err)
+		return err
 	}
 	// Ping does not open a connection, will only validate DSN data
 	if err := db.Ping(); err != nil {
-		panic(err)
+		return err
 	}
+	return nil
 }
 
 func (p *Person) Create() error {

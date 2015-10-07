@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"person"
 	"strconv"
 )
 
@@ -31,9 +32,7 @@ func main() {
 		panic("No \"MYSQLDB\" environment variable has been configured")
 	}
 
-	if port == 0 {
-		panic("Nope")
-	}
+	person.Connect(os.Getenv("MYSQLUSER"), os.Getenv("MYSQLPASS"), os.Getenv("MYSQLHOST"), port, os.Getenv("MYSQLDB"))
 
 	router := NewRouter()
 	log.Fatal(http.ListenAndServe(fmt.Sprintf("%s:%s", config.Host, strconv.Itoa(config.Port)), router))
