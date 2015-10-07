@@ -9,11 +9,10 @@ import (
 
 func Delete(w http.ResponseWriter, r *http.Request) {
 	// Define the request we are expecting
-	type request struct {
+	req := struct {
 		Obj person.Model `json:"person"`
-	}
+	}{}
 	// Parse data from request
-	var req request
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		log.Print(err)
 		http.Error(w, err.Error(), http.StatusBadRequest)
@@ -27,11 +26,9 @@ func Delete(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	// Define what we want our response to look like
-	type response struct {
+	res := struct {
 		Error error `json:"error"`
-	}
-	// Prepare a response
-	res := response{
+	}{
 		Error: err,
 	}
 	// Marshal the response into JSON
