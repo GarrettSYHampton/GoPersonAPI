@@ -13,15 +13,15 @@ type Routes []Route
 
 var routes = Routes{
 	Route{
-		"Create",
-		"POST",
-		"/person/create",
-		Create,
+		Name: "Create",
+		Method: "POST",
+		Pattern: "/person/create",
+		HandlerFunc: Create,
 	},
 	Route{
-		"Delete",
-		"DELETE",
-		"/person/delete",
-		Delete,
+		Name: "Delete",
+		Method: "DELETE",
+		Pattern: "/person/delete",
+		HandlerFunc: Delete,
 	},
 }
