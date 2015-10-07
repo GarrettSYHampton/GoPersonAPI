@@ -9,9 +9,7 @@ type Route struct {
 	HandlerFunc http.HandlerFunc
 }
 
-type Routes []Route
-
-var routes = Routes{
+var routes = []Route{
 	Route{
 		Name: "Create",
 		Method: "POST",
