@@ -21,10 +21,6 @@ func init() {
 		panic("No \"MYSQLUSER\" environment variable has been configured")
 	}
 	config.User = os.Getenv("MYSQLUSER")
-
-	if os.Getenv("MYSQLPASS") == "" {
-		panic("No \"MYSQLPASS\" environment variable has been configured")
-	}
 	config.Pass = os.Getenv("MYSQLPASS")
 
 	if os.Getenv("MYSQLHOST") == "" {

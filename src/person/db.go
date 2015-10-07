@@ -3,6 +3,7 @@ package person
 import (
 	"database/sql"
 	"fmt"
+	"strconv"
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -18,7 +19,7 @@ func init() {
 		config.User,
 		config.Pass,
 		config.Host,
-		config.Port,
+		strconv.Itoa(config.Port),
 		config.DB,
 	)
 	// Attempt to establish a new SQL driver connection (does not actually connect to the SQL server)
