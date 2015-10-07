@@ -1,6 +1,6 @@
 package person
 
-type Model struct {
+type Person struct {
 	ID           int64  `json:"id"`
 	FirstName    string `json:"firstname"`
 	LastName     string `json:"lastname"`

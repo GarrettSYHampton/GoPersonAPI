@@ -8,13 +8,13 @@ import (
 
 // Request is a something...
 type Request struct {
-	Obj person.Model `json:"person"`
+	Obj person.Person `json:"person"`
 }
 
 // Response is a something...
 type Response struct {
-	Error  error        `json:"error"`
-	Object person.Model `json:"object,omitempty"`
+	Error  error         `json:"error"`
+	Object person.Person `json:"person,omitempty"`
 }
 
 // HTTPError logs an error and writes an error to the given

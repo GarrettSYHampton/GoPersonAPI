@@ -11,15 +11,15 @@ type Route struct {
 
 var routes = []Route{
 	Route{
-		Name: "Create",
-		Method: "POST",
-		Pattern: "/person/create",
+		Name:        "Create",
+		Method:      "POST",
+		Pattern:     "/person/create",
 		HandlerFunc: Create,
 	},
 	Route{
-		Name: "Delete",
-		Method: "DELETE",
-		Pattern: "/person/delete",
+		Name:        "Delete",
+		Method:      "DELETE",
+		Pattern:     "/person/delete",
 		HandlerFunc: Delete,
 	},
 }

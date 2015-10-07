@@ -2,19 +2,18 @@ package main
 
 import (
 	"encoding/json"
-	"log"
 	"net/http"
-	"person"
 )
 
 func Create(w http.ResponseWriter, r *http.Request) {
 	var req Request
-	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+	var err error
+	if err = json.NewDecoder(r.Body).Decode(&req); err != nil {
 		HTTPError(w, err, http.StatusBadRequest)
 		return
 	}
 
-	if err := person.Create(&req.Obj); err != nil {
+	if err = req.Obj.Create(); err != nil {
 		HTTPError(w, err, http.StatusBadRequest)
 		return
 	}
@@ -34,12 +33,13 @@ func Create(w http.ResponseWriter, r *http.Request) {
 
 func Delete(w http.ResponseWriter, r *http.Request) {
 	var req Request
-	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+	var err error
+	if err = json.NewDecoder(r.Body).Decode(&req); err != nil {
 		HTTPError(w, err, http.StatusBadRequest)
 		return
 	}
 
-	if err := person.Delete(req.Obj); err != nil {
+	if err = req.Obj.Delete(); err != nil {
 		HTTPError(w, err, http.StatusBadRequest)
 		return
 	}
