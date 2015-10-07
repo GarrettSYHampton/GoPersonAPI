@@ -1,4 +1,5 @@
 # Go - "Person" API Demo
+Project is supposed to be a web server that takes in JSON, creates or deletes data in MySQL, and responds with JSON.
 
 ## Dependencies
 * go get github.com/gorilla/mux
