@@ -2,16 +2,16 @@ package main
 
 import (
 	"fmt"
+	"github.com/GarrettSYHampton/GoPersonAPI/person"
 	"log"
 	"net/http"
 	"os"
-	"person"
 	"strconv"
 )
 
 func main() {
 
-	r := []string {"MYSQLUSER","MYSQLHOST","MYSQLPORT","MYSQLDB","WEBSERVERHOST","WEBSERVERPORT" }
+	r := []string{"MYSQLUSER", "MYSQLHOST", "MYSQLPORT", "MYSQLDB", "WEBSERVERHOST", "WEBSERVERPORT"}
 	for i := range r {
 		if os.Getenv(r[i]) == "" {
 			log.Fatalf("No \"%s\" environment variable has been configured", r[i])
@@ -29,5 +29,5 @@ func main() {
 	}
 
 	router := NewRouter()
-	log.Fatal(http.ListenAndServe(fmt.Sprintf("%s:%s", os.Getenv("WEBSERVERHOST"), os.Getenv("WEBSERVERPORT"), router))
+	log.Fatal(http.ListenAndServe(fmt.Sprintf("%s:%s", os.Getenv("WEBSERVERHOST"), os.Getenv("WEBSERVERPORT")), router))
 }
