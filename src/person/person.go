@@ -33,10 +33,7 @@ func Connect(user string, pass string, host string, port int, schema string) err
 		return err
 	}
 	// Ping does not open a connection, will only validate DSN data
-	if err := db.Ping(); err != nil {
-		return err
-	}
-	return nil
+	return db.Ping()
 }
 
 func (p *Person) Create() error {
@@ -73,8 +70,5 @@ func (p Person) Delete() error {
         WHERE
         id = ?
     `, p.ID)
-	if err != nil {
-		return err
-	}
-	return nil
+	return err
 }
